@@ -4,9 +4,10 @@ const db = require('./db/db.json');
 const fs = require('fs');
 // const apiRoutes = require('./routes/apiRoutes');
 // const htmlRoutes = require('./routes/htmlRoutes');
-const app = express();
 
+const app = express();
 const PORT = process.env.PORT || 3001; //process.env.PORT is for prduction level, uses whatever port is available
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -57,15 +58,15 @@ app.post('/api/notes', (req,res) => {
 
     if(title && text) {
         const newNote = {
-            title: 'hey',
-            text: 'i work?'
+            title,
+            text
         }
 
         // convert data to string to save
         const noteString = JSON.stringify(newNote)
 
         //write string to file
-        fs.writeFile(`./db/${newNote}.json`, noteString, (err) => 
+        fs.writeFile(`./db/db.json`, noteString, (err) => 
             err
                 ? console.error(err)
                 : console.log('yep')
