@@ -11,8 +11,8 @@
     - create "get" route for `/notes` that returns `notes.html`
     - create "get" route for `*` that returns `index.html`
     - create "get" route for `/api/notes` that returns saved notes as JSON
-    - create "post" route for `api/notes` that saves new note to `db.json` file
-    - create "delete" route for `api/notes/:id` that deletes note from `db.json` (bonus)
+    - create "post" route for `/api/notes` that saves new note to `db.json` file
+    - create "delete" route for `/api/notes/:id` that deletes note from `db.json` (bonus)
 
 4. Create helper functions that manage saving and retrieving notes from `db.json`
     - create getNotes() that returns all saved notes
