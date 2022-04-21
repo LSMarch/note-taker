@@ -10,7 +10,7 @@ const readFromFile = util.promisify(fs.readFile);
      * @returns {void}
      */
 
-const writeToFile = (destination,contnet) =>
+const writeToFile = (destination,content) =>
     fs.writeFile(destination, JSON.stringify(content, null, 2), (err) =>
     err ? console.error(err) : console.info(`\nadded to ${destination}`)
     );
@@ -21,7 +21,7 @@ const writeToFile = (destination,contnet) =>
      * @returns {void}
      */
 
-    const readAndAppend = (conent, file) => {
+    const readAndAppend = (content, file) => {
         fs.readFile(file, 'utf8', (err, data) =>{
             if (err) {
                 console.error(err)
