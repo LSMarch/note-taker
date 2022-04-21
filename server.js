@@ -4,10 +4,10 @@ const db = require('./db/db.json');
 const fs = require('fs');
 // const apiRoutes = require('./routes/apiRoutes');
 // const htmlRoutes = require('./routes/htmlRoutes');
-const api = require('./routes/routes.js')
+const api = require('./routes/index.js')
 
 const app = express();
-const PORT = process.env.PORT || 3001; //process.env.PORT is for prduction level, uses whatever port is available
+const PORT = process.env.PORT || 3000; //process.env.PORT is for prduction level, uses whatever port is available
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

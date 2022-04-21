@@ -4,13 +4,17 @@ const { readFromFile, readAndAppend } = require('../helper/fsUtils')
 // GET route for grabbing all notes
 notes.get('/', (req,res) =>{
     console.info(`${req.method} request got`);
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+    readFromFile('./db/db.json', 'utf8').then((data) => {
+        res.json(JSON.parse(data))
+        //console.log(json(JSON.parse(data)))
+    
+    });
 });
 
 // POST route for new note
 notes.post('/', (req,res) => {
     console.info(`${req.method} request got`);
-    //console.log(req.body)
+    console.log(req.body)
     const { title, text } = req.body
 
     if(title && text) {

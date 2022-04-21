@@ -11,7 +11,7 @@ const readFromFile = util.promisify(fs.readFile);
      */
 
 const writeToFile = (destination,content) =>
-    fs.writeFile(destination, JSON.stringify(content, null, 2), (err) =>
+    fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
     err ? console.error(err) : console.info(`\nadded to ${destination}`)
     );
     /**
@@ -28,7 +28,7 @@ const writeToFile = (destination,content) =>
             } else {
                 const parsedData = JSON.parse(data);
                 parsedData.push(content);
-                writeToFile(file, parsedData)
+                writeToFile(file, parsedData);
             }
         })
     }

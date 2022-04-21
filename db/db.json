@@ -1,4 +1,14 @@
-{
-  "title": "annnnd....",
-  "text": "i still work!"
-}
+[
+    {
+        "title": "title",
+        "text": "text"
+    },
+    {
+        "title": "hmm",
+        "text": "are you not working?"
+    },
+    {
+        "title": "YES",
+        "text": "I AM A GOD"
+    }
+]
