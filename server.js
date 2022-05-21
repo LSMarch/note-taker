@@ -1,20 +1,21 @@
+//required packages
 const express = require('express');
+const htmlRoutes = require('./routes/htmlRoutes');
+const notesRoutes = require('./routes/notesRoutes')
 
-const htmlRoutes = require('./routes/htmlRoutes.js');
-const apiRoutes = require('./routes/apiRoutes')
+const app = express()
+const PORT = process.env.PORT || 3001;
 
-const app = express();
-const PORT = process.env.PORT || 3001; //process.env.PORT is for prduction level, uses whatever port is available
-
+//this is middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api', notesRoutes);
 app.use(express.static('public'));
+app.use('/', htmlRoutes);
 
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes)
+//how we open the server
+app.listen(PORT, ()=> {
+  console.log(`App listening at http://localhost:${PORT}`)
+})
 
-
-app.listen(PORT, ()=>{
-    console.log(`App listening at http://localhost:${PORT}`);
-});
 

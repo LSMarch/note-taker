@@ -1,61 +1,37 @@
+//required packages
 const fs = require('fs');
-const util = require('util');
+const util= require('util');
 
-// Read file
-const readFile = util.promisify(fs.readFile);
-const writeFile = util.promisify(fs.writeFile);
+//variables for writing and reading the files returning in a promise object
+const readTheFile = util.promisify(fs.readFile)
+const writeTheFile = util.promisify(fs.writeFile)
 
-const grabNotes = (content, file) => {
-    readFile(file, 'utf8', (err, data) => {
-        if (err) {
-            console.log(err)
-        } else {
-            const parsedData = JSON.parse(data);
-            parsedData.push(content);
-            keepNotes(file, parsedData)
-        }
-    })
+//function that reads the file, then creates it into a JavaScript object and then pushes the data back to the file. 
+
+
+const getNotes = (content, file) => {
+    readTheFile(file, 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        const parsedData = JSON.parse(data);
+        parsedData.push(content);
+        saveNotes(file, parsedData);
+      }
+    });
+  };
+  
+  //function that writes the data onto the file
+  const saveNotes = (destination, content) => {
+    writeTheFile(destination, JSON.stringify(content, null, 1), (err) => {
+    if (err){
+      console.error(err);
+    }else {
+      console.info(`\nData written to ${destination}`)
+    }
+  })
 };
 
-const keepNotes = (destination, content) => {
-    writeFile(destination, JSON.stringify(content, null, 1, (err) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log(`\n Data written in ${destination}`)
-        }
-    }))
-}
 
-//     /**
-//      * writes data to json file given destination and content
-//      * @param {string} destination;
-//      * @param {object} content;
-//      * @returns {void}
-//      */
-
-// const writeToFile = (destination,content) =>
-//     fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
-//     err ? console.error(err) : console.info(`\nadded to ${destination}`)
-//     );
-//     /**
-//      * read data from given file and append content
-//      * @param {object} content
-//      * @param {string} file
-//      * @returns {void}
-//      */
-
-//     const readAndAppend = (content, file) => {
-//         fs.readFile(file, 'utf8', (err, data) =>{
-//             if (err) {
-//                 console.error(err)
-//             } else {
-//                 const parsedData = JSON.parse(data);
-//                 parsedData.push(content);
-//                 writeToFile(file, parsedData);
-//             }
-//         })
-//     }
-
-    module.exports = { readFile, grabNotes, keepNotes }
+module.exports = { readTheFile, getNotes, saveNotes };
 

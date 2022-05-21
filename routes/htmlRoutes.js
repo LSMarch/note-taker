@@ -1,16 +1,19 @@
-const notes = require('express').Router();
-const path = require('path');
+//required packages
+const router = require('express').Router();
+const path = require('path')
 
-notes.get('/notes', (req,res) => {
-    res.sendFile(path.join(__dirname, '../public/notes.html'));
+//route to the homepage
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'))
+})
+//route to the notes page
+router.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/notes.html'))
 });
+//routes back to home page if user types in anything else
+router.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '../public/index.html')
+  ));
 
-notes.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
-});
 
-notes.get('*', (req,res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
-});
-
-module.exports = notes
+module.exports = router;
